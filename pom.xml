@@ -11,6 +11,7 @@
 	<groupId>com.yechy</groupId>
 	<artifactId>dailypicserver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>${pom.package}</packaging>
 	<name>DailyPicServer</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -35,6 +36,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>Root</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -42,5 +44,31 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>jar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<pom.package>jar</pom.package>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>war</id>
+			<properties>
+				<pom.package>war</pom.package>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+					<scope>provided</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
 
 </project>
