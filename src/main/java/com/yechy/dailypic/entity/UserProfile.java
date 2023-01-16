@@ -2,12 +2,14 @@ package com.yechy.dailypic.entity;
 
 import java.io.Serializable;
 
-public class DpUser implements Serializable {
+public class UserProfile implements Serializable {
+
+    private int id;
     private String userName;
 
-    private String phoneNum;
-
     private int age;
+
+    private byte gender;
 
     public String getUserName() {
         return userName;
@@ -15,14 +17,6 @@ public class DpUser implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getPhoneNum() {
-        return phoneNum;
-    }
-
-    public void setPhoneNum(String phoneNum) {
-        this.phoneNum = phoneNum;
     }
 
     public int getAge() {

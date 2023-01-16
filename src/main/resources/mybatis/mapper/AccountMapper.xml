@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yechy.dailypic.mapper.AccountMapper">
+    <resultMap id="AccountMap" type="Account">
+        <id property="id" column="id"/>
+        <result property="userName" column="user_name"/>
+        <result property="pwd" column="pwd"/>
+        <result property="accountId" column="account_id"/>
+        <result property="phoneNum" column="phone_num"/>
+
+        <association property="userProfile" javaType="UserProfile">
+            <id property="id" column="id"/>
+            <result property="age" column="age"/>
+            <result property="gender" column="gender"/>
+        </association>
+    </resultMap>
+
+    <insert id="addAccount" parameterType="Account" >
+        insert into account (user_name, pwd, account_id, phone_num)
+        values (#{userName}, #{pwd}, #{accountId}, #{phoneNum})
+    </insert>
+
+    <delete id="deleteAccount" parameterType="Account">
+        delete
+        from account
+        where account_id = #{accountId}
+    </delete>
+
+    <select id="queryAccount" parameterType="Account" resultType="Account">
+        select *
+        from account
+        where user_name = #{userName}
+    </select>
+
+    <select id="queryAccountList" resultMap="AccountMap">
+        select *
+        from account
+    </select>
+</mapper>

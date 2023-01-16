@@ -1,34 +1,50 @@
 package com.yechy.dailypic.controller;
 
 import com.yechy.dailypic.entity.Account;
-import com.yechy.dailypic.entity.DpUser;
+import com.yechy.dailypic.entity.UserProfile;
+import com.yechy.dailypic.service.IAccountService;
+import com.yechy.dailypic.util.ResponseResult;
+import com.yechy.dailypic.util.ResponseUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Controller
 public class AccountController {
+
+    private Logger logger = LoggerFactory.getLogger(AccountController.class);
+
+    @Autowired
+    private IAccountService accountService;
+
+    //
+//    @PostMapping("/user/login")
+//    public ResponseResult<String> login(@RequestBody Account account) {
+//        return ResponseUtil.success();
+//    }
 
     @ResponseBody
     @RequestMapping(value = "/account", method = RequestMethod.GET)
     public Account getAccount() {
         Account account = new Account();
-        account.setName("Cloud");
+        account.setUserName("Cloud");
         account.setAccountId("jdasjad");
-        DpUser user = getUser();
-        account.setUser(user);
+        UserProfile user = getUser();
+        account.setUserProfile(user);
         return account;
     }
 
     @ResponseBody
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public DpUser getUser() {
-        DpUser user = new DpUser();
+    public UserProfile getUser() {
+        UserProfile user = new UserProfile();
         user.setUserName("Cloud");
         user.setAge(30);
         return user;
@@ -42,6 +58,7 @@ public class AccountController {
         list.add(new Account("Jane","00003","e10adc3949ba59abbe56e","18666666666"));
         list.add(new Account("Maria", "0004", "e10adc3949ba59abbe56e", "19999999999"));
         m.addAttribute("accountList",list);
+        logger.debug("getAccountList: account size={}", list.size());
         return "accountList";
     }
 }

@@ -4,32 +4,34 @@ import java.io.Serializable;
 
 public class Account implements Serializable {
 
-    private String name;
+    private int id;
 
-    private String accountId;
+    private String userName;
 
     private String pwd;
 
+    private String accountId;
+
     private String phoneNum;
 
-    private DpUser user;
+    private UserProfile userProfile;
 
     public Account() {
     }
 
-    public Account(String name, String accountId, String pwd, String phoneNum) {
-        this.name = name;
+    public Account(String userName, String accountId, String pwd, String phoneNum) {
+        this.userName = userName;
         this.accountId = accountId;
         this.pwd = pwd;
         this.phoneNum = phoneNum;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPwd() {
@@ -56,11 +58,11 @@ public class Account implements Serializable {
         this.phoneNum = phoneNum;
     }
 
-    public DpUser getUser() {
-        return user;
+    public UserProfile getUserProfile() {
+        return userProfile;
     }
 
-    public void setUser(DpUser user) {
-        this.user = user;
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
     }
 }
