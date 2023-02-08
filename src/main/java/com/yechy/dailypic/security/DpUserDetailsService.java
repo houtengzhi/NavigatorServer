@@ -1,5 +1,6 @@
 package com.yechy.dailypic.security;
 
+import com.yechy.dailypic.entity.Account;
 import com.yechy.dailypic.service.IAccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,7 @@ public class DpUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         logger.debug("loadUserByUsername(), username={}", username);
+        Account account = accountService.queryAccountByName(username);
         return new User("cloud", "123456", true, true, true, true, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
     }
 }

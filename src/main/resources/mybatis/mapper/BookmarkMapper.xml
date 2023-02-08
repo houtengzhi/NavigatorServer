@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yechy.dailypic.mapper.BookmarkMapper">
+    <update id="createTable">
+        create table if not exists ${tableName}(
+        id int(11) not null auto_increment,
+        account_id varchar(33) not null,
+        site_name varchar(33) not null,
+        site_url varchar(33) not null,
+        logo_url varchar(33),
+        category_id int(11) not null,
+        category_name varchar(20) not null,
+        primary key (id)) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+    </update>
     <insert id="addBookmark" parameterType="Bookmark">
-        insert into bookmark (user_name, pwd, account_id, phone_num)
-        values (#{userName}, #{pwd}, #{accountId}, #{phoneNum})
+        insert into bookmark (account_id, site_name, site_url, logo_url, category_id, category_name)
+        values (#{accountId}, #{siteName}, #{siteUrl}, #{logoUrl}, #{categoryId}, #{categoryName})
     </insert>
+
+    <select id="queryBookmarkList" parameterType="String" resultType="Bookmark">
+        select *
+        from bookmark
+        where account_id = #{accountId}
+    </select>
 </mapper>

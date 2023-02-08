@@ -11,6 +11,12 @@ import java.util.List;
 public class BookmarkServiceImpl implements IBookmarkService{
     @Autowired
     private BookmarkMapper bookmarkMapper;
+
+    @Override
+    public void createTable() {
+        bookmarkMapper.createTable("bookmark");
+    }
+
     @Override
     public int addBookmark(Bookmark bookmark) {
         return bookmarkMapper.addBookmark(bookmark);

@@ -7,10 +7,12 @@ import java.util.List;
 
 @Mapper
 public interface AccountMapper {
+
+    void createTable(String tableName);
     int addAccount(Account account);
     int updateAccount(Account account);
     int deleteAccount(Account account);
     Account queryAccount(Account account);
     List<Account> queryAccountList();
-    Account queryAccount(String userName, String pwd);
+    Account queryAccountByName(String userName);
 }

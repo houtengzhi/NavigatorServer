@@ -15,6 +15,16 @@
         </association>
     </resultMap>
 
+    <update id="createTable">
+        create table if not exists ${tableName}(
+        id int(11) not null auto_increment,
+        user_name varchar(33) not null,
+        pwd varchar(33) not null,
+        account_id varchar(20) not null,
+        phone_num varchar(20),
+        primary key (id)) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+    </update>
+
     <insert id="addAccount" parameterType="Account" >
         insert into account (user_name, pwd, account_id, phone_num)
         values (#{userName}, #{pwd}, #{accountId}, #{phoneNum})
@@ -25,6 +35,12 @@
         from account
         where account_id = #{accountId}
     </delete>
+
+    <select id="queryAccountByName" parameterType="String" resultType="Account">
+        select *
+        from account
+        where user_name = #{userName}
+    </select>
 
     <select id="queryAccount" parameterType="Account" resultType="Account">
         select *

@@ -8,6 +8,7 @@ import java.util.List;
 @Mapper
 public interface BookmarkMapper {
 
+    void createTable(String tableName);
     int addBookmark(Bookmark bookmark);
     int updateBookmark(Bookmark bookmark);
     int deleteBookmark(Bookmark bookmark);

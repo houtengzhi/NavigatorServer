@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Cloud</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>no</th>
+        <th>account</th>
+        <th>name</th>
+        <th>password</th>
+        <th>tel</th>
+    </tr>
+    <tr th:each="bookmark,stat : ${bookmarkList}">
+        <td th:text="${bookmark.siteName}"></td>
+        <td th:text="${bookmark.siteUrl}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
@@ -23,12 +24,6 @@ public class AccountController {
 
     @Autowired
     private IAccountService accountService;
-
-    //
-//    @PostMapping("/user/login")
-//    public ResponseResult<String> login(@RequestBody Account account) {
-//        return ResponseUtil.success();
-//    }
 
     @ResponseBody
     @RequestMapping(value = "/account", method = RequestMethod.GET)
@@ -42,6 +37,21 @@ public class AccountController {
     }
 
     @ResponseBody
+    @PostMapping(value = "/user/register")
+    public Account registerAccount(@RequestParam("username") String userName, @RequestParam("password") String pwd) {
+        Account existedAccount = accountService.queryAccountByName(userName);
+        if (existedAccount != null) {
+            logger.info("Account already exist");
+            return existedAccount;
+        }
+        Account account = new Account(userName, String.valueOf(System.currentTimeMillis()), pwd, null);
+        int id = accountService.addAccount(account);
+        logger.debug("Create account success");
+        account.setId(id);
+        return account;
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public UserProfile getUser() {
         UserProfile user = new UserProfile();
@@ -50,9 +60,9 @@ public class AccountController {
         return user;
     }
 
-    @RequestMapping(value = "/accountList", method = RequestMethod.GET)
+    @RequestMapping(value = "/accounts", method = RequestMethod.GET)
     public String getAccountList(Model m) {
-        List<Account> list = new ArrayList<Account>();
+        List<Account> list = new ArrayList<>();
         list.add(new Account("KangKang", "00001", "xxx", "17777777777"));
         list.add(new Account("Mike", "00002", "e10adc3949ba59abbe56e", "13444444444"));
         list.add(new Account("Jane","00003","e10adc3949ba59abbe56e","18666666666"));
