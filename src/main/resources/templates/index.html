@@ -5,17 +5,10 @@
     <title>Hello Cloud</title>
 </head>
 <body>
-<table>
-    <tr>
-        <th>no</th>
-        <th>account</th>
-        <th>name</th>
-        <th>password</th>
-        <th>tel</th>
-    </tr>
-    <tr th:each="bookmark,stat : ${bookmarkList}">
-        <td th:text="${bookmark.siteName}"></td>
-        <td th:text="${bookmark.siteUrl}"></td>
+<table align="center">
+    <tr th:each="category, stat : ${categoryList}">
+        <td th:text="${category.categoryName}"></td>
+        <td th:each="bookmark, stat : ${bookmarkList}" th:if="${bookmark.categoryName} == ${category.categoryName}"><a th:text="${bookmark.siteName}" th:href="@{${bookmark.siteUrl}}" target="_blank"></a></td>
     </tr>
 </table>
 </body>

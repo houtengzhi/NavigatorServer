@@ -2,6 +2,7 @@ package com.yechy.dailypic.controller;
 
 import com.yechy.dailypic.entity.Account;
 import com.yechy.dailypic.entity.Bookmark;
+import com.yechy.dailypic.entity.Category;
 import com.yechy.dailypic.service.IAccountService;
 import com.yechy.dailypic.service.IBookmarkService;
 import com.yechy.dailypic.util.ResponseResult;
@@ -49,6 +50,11 @@ public class BookmarkController {
         Account account = accountService.queryAccountByName(name);
         List<Bookmark> bookmarkList = bookmarkService.queryBookmarkList(account.getAccountId());
         m.addAttribute("bookmarkList", bookmarkList);
+
+        List<Category> categoryList = new ArrayList<>();
+        categoryList.add(new Category("Search"));
+        categoryList.add(new Category("Company"));
+        m.addAttribute("categoryList", categoryList);
         return "index";
     }
 }

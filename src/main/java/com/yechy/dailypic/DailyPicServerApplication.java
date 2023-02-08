@@ -39,26 +39,34 @@ public class DailyPicServerApplication implements CommandLineRunner {
 		accountService.createTable();
 		bookmarkService.createTable();
 		for (Bookmark bookmark : getBookmarkList()) {
-			bookmarkService.addBookmark(bookmark);
+//			bookmarkService.addBookmark(bookmark);
 		}
 	}
 
 	public List<Bookmark> getBookmarkList() {
 		Bookmark bookmark = new Bookmark();
 		bookmark.setId(1);
-		bookmark.setSiteName("TEST1");
-		bookmark.setSiteUrl("zjsdsk");
+		bookmark.setSiteName("Baidu");
+		bookmark.setSiteUrl("www.baidu.com");
 		bookmark.setAccountId("id_123456");
-		bookmark.setCategoryName("YY");
+		bookmark.setCategoryName("Search");
 		List<Bookmark> list = new ArrayList<>();
 		list.add(bookmark);
 
 		bookmark = new Bookmark();
 		bookmark.setId(2);
-		bookmark.setSiteName("TEST2");
-		bookmark.setSiteUrl("12234434333");
+		bookmark.setSiteName("Google");
+		bookmark.setSiteUrl("www.google.com");
 		bookmark.setAccountId("id_123456");
-		bookmark.setCategoryName("YY");
+		bookmark.setCategoryName("Search");
+		list.add(bookmark);
+
+		bookmark = new Bookmark();
+		bookmark.setId(2);
+		bookmark.setSiteName("Moxo");
+		bookmark.setSiteUrl("www.moxo.com");
+		bookmark.setAccountId("id_123456");
+		bookmark.setCategoryName("Company");
 		list.add(bookmark);
 		return list;
 	}
