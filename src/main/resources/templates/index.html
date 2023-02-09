@@ -2,14 +2,113 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/global.css}" type="text/css">
     <title>Hello Cloud</title>
 </head>
 <body>
-<table align="center">
-    <tr th:each="category, stat : ${categoryList}">
-        <td th:text="${category.categoryName}"></td>
-        <td th:each="bookmark, stat : ${bookmarkList}" th:if="${bookmark.categoryName} == ${category.categoryName}"><a th:text="${bookmark.siteName}" th:href="@{${bookmark.siteUrl}}" target="_blank"></a></td>
-    </tr>
-</table>
+<!--<table align="center">-->
+<!--    <tr th:each="category, stat : ${categoryList}">-->
+<!--        <td th:text="${category.categoryName}"></td>-->
+<!--        <td th:each="bookmark, stat : ${bookmarkList}" th:if="${bookmark.categoryName} == ${category.categoryName}"><a th:text="${bookmark.siteName}" th:href="@{${bookmark.siteUrl}}" target="_blank"></a></td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+<!--总体容器-->
+<div class="totalDiv">
+    <!--最上信息栏，其实用是用来加了透明壳-->
+    <div class="informationBox"></div>
+    <!--最上分区栏-->
+    <div class="areaBox">
+        <!--子分区链接-->
+        <a href="#" class="areaAnchor">新闻</a>
+        <a href="#" class="areaAnchor">学术</a>
+        <a href="#" class="areaAnchor">更多</a>
+    </div>
+    <!--最上用户栏-->
+    <div class="userBox">
+        <!--天气信息-->
+        <div class="userWeather">
+            <span class="weatherText weatherLevel">优</span>
+            <span class="weatherText">
+                    <span class="weatherText weatherText-num">4°C</span>
+                    <img class="weatherText weatherText-img" th:src="@{/image/weather.png}" alt="">
+                </span>
+            <span class="weatherText">合肥</span>
+        </div>
+        <!--用户-设置-->
+        <div class="userSetting">设置</div>
+        <!--用户-头像-->
+        <div class="userFace">
+                <span class="UserFace-border">
+                    <img class="UserFace-image" src="images/face.png">
+                </span>
+            <span class="UserFace-text">伊布</span>
+        </div>
+    </div>
+    <!--搜索框部分总体-->
+    <div class="searchBox">
+        <!--搜索框-->
+        <form class="search" action="">
+                <span class="search-group">
+                    <!--识图功能按钮-->
+                    <span class="search-photo"></span>
+                    <!--输入框-->
+                    <input class="search-main" type="text">
+                </span>
+            <input class="search-btn" type="submit" value="百度一下">
+        </form>
+    </div>
+    <!--功能框部分-->
+    <div class="functionBox">
+        <!--功能框主体-->
+        <div class="function-main">
+            <!--功能标签-->
+            <div class="function-tab">
+                <span class="tab-text type-deep">我的关注</span>
+                <span class="tab-text">推荐</span>
+                <span class="tab-text">导航</span>
+            </div>
+            <!--下划线-->
+            <div class="function-line"></div>
+            <!--功能主体-->
+            <div class="function-body">
+                <!--磁贴-->
+                <div class="body-tile">
+                    <div class="tile-menu">
+                        <span class="menu-my">我的导航</span>
+                        <span class="menu-write">编辑</span>
+                        <span class="menu-display">分类显示</span>
+                        <img class="menu-icon menu-text" th:src="@{/image/icon.png}" alt="">
+                    </div>
+                    <div class="tile-item" th:each="category, stat : ${categoryList}">
+                        <div class="item-group">
+                            <div class="item-group-text" th:text="${category.categoryName}"></div>
+                        </div>
+                        <div class="item-group" th:each="bookmark, stat : ${bookmarkList}" th:if="${bookmark.categoryName} == ${category.categoryName}">
+                            <img class="item-group-pic1" th:src="@{/image/tile-1.png}">
+                            <div class="item-group-text" th:text="${bookmark.siteName}"></div>
+                        </div>
+
+                    </div>
+
+                    <!--自定义-->
+                    <div class="body-custom">
+                        <img class="custom-pic" th:src="@{/image/tile-2.png}">
+                        <span class="custom-text">自定义</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--底栏部分-->
+    <div class="bottomBox">
+        <a class="bottom-text" href="#">设为首页</a>
+        <a class="bottom-text" href="#">关于百度</a>
+        <a class="bottom-text" href="#">About Baidu</a>
+        <a class="bottom-text" href="#">©2021 Baidu</a>
+    </div>
+</div>
+
 </body>
 </html>

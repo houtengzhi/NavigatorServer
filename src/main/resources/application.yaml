@@ -4,6 +4,14 @@ spring:
     password: Moxtr@12
     url: jdbc:mysql://localhost:3306/springboot?useUnicode=true&characterEncoding=utf-8&useSSL=true
     driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    cache: false
+
+debug: true
+
+logging:
+  config: classpath:logback-spring.xml
+
 
 mybatis:
   # 对应实体类的路径
@@ -13,3 +21,4 @@ mybatis:
   # 开启驼峰命名规范自动映射
   configuration:
     map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
