@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.yechy</groupId>
-	<artifactId>dailypicserver</artifactId>
+	<artifactId>navigatorserver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>${pom.package}</packaging>
-	<name>DailyPicServer</name>
+	<name>NavigatorServer</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
@@ -37,6 +37,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-authorization-server</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 
 		<dependency>
