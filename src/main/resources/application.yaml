@@ -10,7 +10,7 @@ spring:
 debug: true
 
 logging:
-  config: classpath:logback-spring.xml
+  config: classpath:log4j2-spring.xml
 
 
 mybatis:
