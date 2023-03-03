@@ -1,6 +1,7 @@
 package com.yechy.dailypic.config;
 
 import com.yechy.dailypic.handler.NavAuthenticationFailureHandler;
+import com.yechy.dailypic.handler.NavInvalidSessionStrategy;
 import com.yechy.dailypic.security.DpUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -51,12 +52,16 @@ public class DefaultSecurityConfig {
                 .tokenValiditySeconds(3600)
                 .and()
                 .sessionManagement()
+                .invalidSessionStrategy(new NavInvalidSessionStrategy())
                 .and()
                 // 自定义登出页面
-//                .logout()
-//                .logoutUrl("/user/logout")
-////                .logoutSuccessUrl("/login.html")
-//                .and()
+                .logout()
+                .logoutUrl("/user/logout")
+                .logoutSuccessUrl("/login.html")
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .deleteCookies()
+                .and()
 
                 .csrf().disable()
                 .build();
